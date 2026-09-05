@@ -1,0 +1,54 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "post"
+    label: "Posts"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    fields:
+      - { label: "Title", name: "title", widget: "string", pattern: ["^.{1,60}$", "Max 60 characters"] }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Publish Date", name: "publishDate", widget: "datetime" }
+      - { label: "Updated Date", name: "updatedDate", widget: "datetime", required: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Pinned", name: "pinned", widget: "boolean", default: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false, default: [] }
+      - { label: "OG Image", name: "ogImage", widget: "string", required: false }
+      - label: "Cover Image"
+        name: "coverImage"
+        widget: "object"
+        required: false
+        fields:
+          - { label: "Alt Text", name: "alt", widget: "string" }
+          - { label: "Image", name: "src", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "note"
+    label: "Notes"
+    folder: "content/notes"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    fields:
+      - { label: "Title", name: "title", widget: "string", pattern: ["^.{1,60}$", "Max 60 characters"] }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Publish Date", name: "publishDate", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "tag"
+    label: "Tags"
+    folder: "content/tags"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    fields:
+      - { label: "Title", name: "title", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
